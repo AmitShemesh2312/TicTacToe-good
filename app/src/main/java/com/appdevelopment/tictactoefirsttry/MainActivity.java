@@ -40,10 +40,22 @@ public class MainActivity extends AppCompatActivity implements IView {
     @Override
     public void displayMessage(String message) {
         Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
+        DisabledButtons();
+    }
+
+    private void DisabledButtons() {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                int res = getResources().getIdentifier("button" + i + j, "id", getPackageName());
+                Button btn = (Button)findViewById(res);
+                btn.setEnabled(false);
+            }
+        }
     }
 
     public void userMove(View view) {
-        //1
         Button button = (Button)view;
         String str = button.getResources().getResourceEntryName(button.getId());
         char[] arr = str.toCharArray();
@@ -53,7 +65,5 @@ public class MainActivity extends AppCompatActivity implements IView {
         int col = arr[arr.length-1]-48; // s[1]
 
         presenter.moveFromUser(row,col);
-
-
     }
 }
