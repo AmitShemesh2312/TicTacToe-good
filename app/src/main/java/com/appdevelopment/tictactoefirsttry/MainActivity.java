@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements IView {
@@ -38,12 +39,15 @@ public class MainActivity extends AppCompatActivity implements IView {
     }
 
     @Override
-    public void displayMessage(String message) {
-        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
-        DisabledButtons();
+    public void displayMessage(String message)
+    {
+        int res = getResources().getIdentifier("winner", "id",getPackageName());
+        TextView txt = findViewById(res);
+        txt.setText(message);
+        disabledButtons();
     }
 
-    private void DisabledButtons() {
+    public void disabledButtons() {
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
