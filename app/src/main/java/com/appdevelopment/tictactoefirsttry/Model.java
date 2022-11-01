@@ -21,19 +21,39 @@ public class Model
     }
     public Constants.GAME_STATUS checkWin()
     {
-
-        int val = board.length;
-        for (int i = 0; i < board.length ; i++) {
-            for (int j = 0; j <board[i].length ; j++) {
+        if (numTurns>4)
+        {
+            int row = 0;
+            int column = 0;
+            int val = board.length;
+            if (board[0][0] == board[1][1] && board[2][2] == board[1][1])
+                return Constants.GAME_STATUS.WIN;
+            if (board[0][2] == board[1][1] && board[2][0] == board[1][1])
+                return Constants.GAME_STATUS.WIN;
+            for (int i = 0; i < val; i++) {
+                for (int j = 0; j < val; j++) {
+                    row += board[i][j];
+                    column += board[j][i];
+                }
+                if (column == 3 || column == -3)
+                    return Constants.GAME_STATUS.WIN;
+                if (row == -3 || row == 3)
+                    return Constants.GAME_STATUS.WIN;
+                row = 0;
+                column = 0;
 
             }
         }
+        if (numTurns == 9)
+        {
+            return Constants.GAME_STATUS.TIE;
+        }
 
-        return Constants.GAME_STATUS.WIN;
+        return Constants.GAME_STATUS.NOT_SURE;
 
     }
 
-    // called only after isLagel is called
+    // called only after isLegal is called
     // 1 move is legal
     // place move on board
     // increase num turns

@@ -22,25 +22,24 @@ public class MainActivity extends AppCompatActivity implements IView {
     @Override
     public void updateView(int row, int col, int player) {
 
-        // get view by row and col
-        String tag = ""+row+","+col;
-        ConstraintLayout cl = findViewById(R.id.parentLayout);
-        Button v = cl.findViewWithTag(tag);
-        v.setText("0");
 
         // update it with currentPlayer
         //2 using id
         // create String id
 
-        String strID = "btnStart"+row+col;
+        String strID = "button" + row + col;
         int resID = getResources().getIdentifier(strID, "id", getPackageName());
         Button b = findViewById(resID);
-        b.setText("X");
+        if (player == -1)
+            b.setText("O");
+
+        else
+            b.setText("X");
     }
 
     @Override
     public void displayMessage(String message) {
-
+        Toast.makeText(this, ""+message, Toast.LENGTH_SHORT).show();
     }
 
     public void userMove(View view) {
@@ -49,12 +48,9 @@ public class MainActivity extends AppCompatActivity implements IView {
         String str = button.getResources().getResourceEntryName(button.getId());
         char[] arr = str.toCharArray();
 
-        String s = button.getTag().toString();
-        String[] res = s.split(",");
-        int row = arr[arr.length-2]; // s[0]
-        int col = arr[-1]; // s[1]
-        Toast.makeText(this, "row" + row, Toast.LENGTH_SHORT).show();
 
+        int row = arr[arr.length-2]-48; // s[0]
+        int col = arr[arr.length-1]-48; // s[1]
 
         presenter.moveFromUser(row,col);
 
