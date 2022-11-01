@@ -1,11 +1,9 @@
 package com.appdevelopment.tictactoefirsttry;
 
-import android.widget.Toast;
-
 public class Presenter
 {
 
-    private Model model;
+    private final Model model;
     private IView view;
     private int currentPlayer=1;
     public Presenter(IView view)

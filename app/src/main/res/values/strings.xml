@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TicTacToeFirstTry</string>
+    <string name="x_o">X O</string>
 </resources>

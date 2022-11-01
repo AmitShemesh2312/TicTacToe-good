@@ -1,13 +1,11 @@
 package com.appdevelopment.tictactoefirsttry;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements IView {
 
@@ -53,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements IView {
             for (int j = 0; j < 3; j++)
             {
                 int res = getResources().getIdentifier("button" + i + j, "id", getPackageName());
-                Button btn = (Button)findViewById(res);
+                Button btn = findViewById(res);
                 btn.setEnabled(false);
             }
         }

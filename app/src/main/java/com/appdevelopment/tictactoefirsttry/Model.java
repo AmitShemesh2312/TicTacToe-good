@@ -4,7 +4,7 @@ public class Model
 {
 
     // תכונות
-    private int[][]  board;
+    private final int[][]  board;
     private int numTurns;
     private final int ROWS = 3,COLS = 3;
 
